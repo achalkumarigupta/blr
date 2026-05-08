@@ -1,0 +1,182 @@
+SET 12 – Add Linux Node in Jenkins and Execute Java-based Job
+
+Aim
+To add a Linux node in Jenkins and execute a Java-based job on the Linux node successfully.
+
+Requirements
+The following software/tools were already installed before performing the experiment:
+Java JDK
+Jenkins
+WSL / Ubuntu Linux
+SSH Service
+Browser
+Linux Terminal
+
+
+Question 1
+Add a Linux Node in Jenkins
+
+Step 1: Start Jenkins Service
+Open terminal and run:
+
+sudo systemctl start jenkins
+
+Explanation
+This command starts the Jenkins service in Linux.
+
+Step 2: Open Jenkins Dashboard
+Open browser and type:
+
+http://localhost:8080
+
+Expected Result
+Jenkins dashboard should open successfully.
+
+Step 3: Create Directory for Linux Node
+Open Ubuntu/WSL terminal and run:
+
+mkdir -p ~/jenkins_node
+
+Explanation
+This directory is used as the workspace for the Jenkins Linux node.
+
+Step 4: Start SSH Service
+Run the following command:
+
+sudo service ssh start
+
+Check SSH status:
+sudo service ssh status
+
+Expected Output
+active (running)
+Explanation
+SSH service must be active because Jenkins connects to the Linux node using SSH.
+
+Step 5: Verify Linux Username
+
+Run:
+whoami
+Expected Output
+achal
+Explanation
+This Linux username is required while configuring SSH credentials in Jenkins.
+
+Step 6: Open Nodes Section in Jenkins
+In Jenkins Dashboard:
+
+Manage Jenkins → Nodes
+Click:
+New Node
+
+Step 7: Create Linux Node
+Node Name
+
+LinuxNode
+Select:
+Permanent Agent
+Click:
+OK
+
+Step 8: Configure Linux Node
+Fill the following details:
+Number of Executors
+1
+Remote Root Directory
+/home/achal/jenkins_node
+Labels
+linux
+Usage
+Use this node as much as possible
+Launch Method
+Launch agents via SSH
+
+Step 9: Configure SSH Connection
+Host
+localhost
+Credentials
+Add Jenkins credentials using:
+Username
+achal
+Password
+Enter Ubuntu/WSL password.
+
+Step 10: Configure Host Key Verification
+Under:
+Host Key Verification Strategy
+Select:
+Non verifying Verification Strategy
+Explanation
+This avoids SSH verification issues while connecting localhost through Jenkins.
+
+Step 11: Save and Relaunch Agent
+Click:
+Save
+Then open LinuxNode page and click:
+Relaunch Agent
+Expected Result
+LinuxNode should become ONLINE successfully.
+
+====================================================================================================
+
+Question 2
+Execute Java-based Job on Linux Node
+
+Step 1: Create Jenkins Job
+Open Jenkins Dashboard and click:
+New Item
+Job Name
+JavaLinuxNodeJob
+Select:
+Freestyle Project
+Click:
+OK
+
+Step 2: Assign Linux Node
+Inside Job Configuration:
+Check:
+Restrict where this project can be run
+Label Expression
+linux
+Explanation
+This ensures the job executes only on the Linux node.
+
+Step 3: Add Build Step
+Click:
+Add Build Step → Execute Shell
+Paste the following commands:
+
+cat > Hello.java <<EOF
+public class Hello {
+    public static void main(String[] args) {   
+     System.out.println("Hello from Linux Node Jenkins Job!");    
+}}
+EOF
+javac Hello.java
+java Hello
+
+
+Explanation
+cat > Hello.java creates Java source file.
+javac Hello.java compiles the Java program.
+java Hello executes the compiled Java class.
+
+
+Step 4: Save Job
+Click:
+Save
+
+Step 5: Build the Job
+Click:
+Build Now
+Explanation
+Jenkins sends the job to the Linux node and executes the Java program.
+
+Step 6: Check Console Output
+Open:
+Build History → #1 → Console Output
+Expected Output
+Hello from Linux Node Jenkins Job!Finished: SUCCESS
+
+Result
+Thus, a Linux node was successfully added in Jenkins and a Java-based job was successfully executed on the Linux node using Jenkins.

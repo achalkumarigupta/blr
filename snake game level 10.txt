@@ -1,0 +1,85 @@
+SET 10(Selenium)
+
+Aim
+To write a Selenium script to close browser window without using quit().
+To automate selection of an option from a dropdown/listbox.
+
+
+Software Requirements
+Java JDK
+Maven
+VS Code
+Selenium WebDriver
+Chrome Browser
+
+
+Step 1: Open Project Folder
+Open Command Prompt and type:
+pushd "\\wsl.localhost\Ubuntu\home\achal\SeleniumProject\demo"
+
+Step 2: Open VS Code
+Type:
+code .
+
+Step 3: Open Java File
+Open:
+src/main/java/com/selenium/App.java
+Delete old code and paste the following program.
+
+package com.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class App {
+
+    public static void main(String[] args) throws Exception {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://www.globalsqa.com/demo-site/select-dropdown-menu/");
+
+        driver.manage().window().maximize();
+
+        Thread.sleep(3000);
+
+        WebElement dropdown =
+                driver.findElement(By.tagName("select"));
+
+        Select select = new Select(dropdown);
+
+        select.selectByVisibleText("India");
+
+        System.out.println("India selected successfully");
+
+        Thread.sleep(5000);
+
+        driver.close();
+    }
+}
+
+
+Step 4: Save the File
+Press:
+Ctrl + S
+
+Step 5: Run the Program
+Go to Command Prompt and type:
+mvn exec:java -Dexec.mainClass="com.selenium.App"
+
+
+Browser Output
+Chrome browser opens
+Dropdown webpage opens
+India option gets selected automatically
+Browser closes automatically
+
+
+Command Prompt Output
+India selected successfullyBUILD SUCCESS
+
+Result
+Thus, the Selenium program to close browser window without using quit() and to automate dropdown/listbox option selection was executed successfully.

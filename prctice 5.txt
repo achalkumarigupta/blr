@@ -1,0 +1,128 @@
+SET 5 (Ansible)
+
+Experiment Title
+Compression and Archiving in Linux using Ansible Environment
+
+Aim
+To compress a directory using .tar.gz format and remove the original files.
+To create ZIP and BZIP archives for both files and directories in Linux.
+
+
+Requirements
+Ubuntu/Linux System
+Ansible Environment
+Terminal Access
+
+Packages:
+zip
+unzip
+bzip2
+
+Theory
+Compression and archiving are important tasks in Linux system administration. They help in reducing file size, saving storage space, and transferring files efficiently.
+tar is used to combine multiple files/directories into a single archive.
+gzip compresses files and is commonly used with tar to create .tar.gz files.
+zip creates compressed ZIP archives.
+bzip2 provides better compression than gzip for certain files.
+These tools are widely used in server management, backup operations, and automation tasks in Ansible environments.
+
+Part A – Compress a Directory using .tar.gz
+
+Procedure
+
+Step 1: Move to Working Directory (wsl)
+mkdir ansiblelab
+cd ansiblelab
+
+
+Step 2: Start SSH Service
+sudo service ssh start
+
+Step 3: Create a Directory
+mkdir mydir
+
+Step 4: Create Sample Files inside Directory
+echo "hello" > mydir/file1.txtecho "hello" > mydir/file2.txt
+
+Step 5: Verify Files
+ls mydir
+Output
+file1.txt  file2.txt
+
+Step 6: Compress Directory into .tar.gz
+tar -czvf mydir.tar.gz mydir
+Output
+mydir/mydir/file2.txtmydir/file1.txt
+
+Step 7: Remove Original Directory
+rm -r mydir
+
+Step 8: Verify Archive Creation
+ls
+Output
+hosts  mydir.tar.gz
+
+=================================================================================================================
+
+Observation
+The directory mydir was successfully compressed into mydir.tar.gz and the original directory was deleted.
+
+Part B – Create ZIP and BZIP Archives
+Procedure
+
+Step 1: Create Sample File
+echo "sample text" > sample.txt
+
+Step 2: Create Sample Directory
+mkdir data
+
+Step 3: Create File inside Directory
+echo "demo" > data/demo.txt
+
+Step 4: Install Required Packages
+sudo apt install zip unzip bzip2 -y
+
+1. Create ZIP Archive for File
+Command
+zip sample.zip sample.txt
+Output
+adding: sample.txt (stored 0%)
+
+2. Create ZIP Archive for Directory
+Command
+zip -r data.zip data
+Output
+adding: data/ (stored 0%)adding: data/demo.txt (stored 0%)
+
+3. Create BZIP Archive for File
+Command
+bzip2 sample.txt
+Output
+sample.txt.bz2 created
+
+4. Create BZIP Archive for Directory using TAR
+Command
+tar -cjvf data.tar.bz2 data
+Output
+data/data/demo.txt
+
+Verification
+Command
+ls
+Output
+data  data.tar.bz2  data.zip  hosts  mydir.tar.gz  sample.txt.bz2  sample.zip
+
+Result
+Successfully compressed a directory into .tar.gz format.
+Successfully removed the original directory after compression.
+
+
+Successfully created:
+ZIP archive for a file
+ZIP archive for a directory
+BZIP archive for a file
+BZIP archive for a directory
+
+
+Conclusion
+The experiment demonstrated the use of Linux compression and archiving utilities such as tar, gzip, zip, and bzip2. These commands are essential for system administration, backup management, and efficient file handling in Ansible and Linux environments.

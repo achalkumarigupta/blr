@@ -1,0 +1,123 @@
+SET 1 (Git)
+
+=========================================================================================
+git config --global user.name "Achalkumarigupta"
+git config --global user.email "achalgupta7722@gmail.com"
+ git config --global --list
+
+git init
+git add intro.txt
+git commit -m "First commit"
+
+===========================================================================================
+
+Aim
+To install Git, configure global username and email, initialize a repository, create a text file, and commit it using Git.
+
+Requirements
+Git software
+Git Bash
+Windows File Explorer
+Text Editor / Notepad
+
+Procedure
+
+Part A: Install Git and Configure Username & Email
+
+Step 1: Install Git
+Download Git from the official website.
+Install Git with default settings.
+After installation, open Git Bash.
+
+Step 2: Configure Global Username
+
+Command:
+
+git config --global user.name "Achalkumarigupta"
+
+Explanation:
+This command sets the username globally for Git.
+
+Step 3: Configure Global Email
+
+Command:
+
+git config --global user.email "achalgupta7722@gmail.com"
+
+Explanation:
+This command sets the email globally for Git.
+
+Step 4: Verify Configuration
+
+Command:
+
+git config --global --list
+
+Explanation:
+Displays the configured username and email.
+
+==================================================================
+
+Part B: Initialize Repository and Commit File
+
+Step 1: Create Project Folder
+Open File Explorer.
+Create a new folder named GitLab (or any name).
+Open the folder.
+Right-click inside the folder and select Open Git Bash Here.
+
+Explanation:
+This opens Git Bash directly inside the project folder.
+
+Step 2: Initialize Git Repository
+
+Command:
+
+git init
+
+Explanation:
+Initializes an empty Git repository inside the folder.
+
+Expected Output:
+Initialized empty Git repository
+
+Step 3: Create Text File
+Inside the project folder, create a new text document.
+Rename it as intro.txt.
+Open the file and write some content.
+
+Example Content:
+
+Hello, this is my first Git practical file.
+Save and close the file.
+
+Step 4: Add File to Staging Area
+
+Command:
+
+git add intro.txt
+
+Explanation:
+Adds the file to the staging area.
+
+Step 5: Commit the File
+
+Command:
+
+git commit -m "First commit"
+
+Explanation:
+Creates the first commit and saves the file permanently in the repository.
+
+Expected Output:
+
+1 file changed, 1 insertion(+)
+create mode 100644 intro.txt
+Result
+
+Git was installed and configured successfully.
+The repository was initialized, intro.txt was created, staged, and committed successfully.
+
+Conclusion
+
+Thus, basic Git operations such as configuration, repository initialization, adding files, and committing changes were performed successfully.

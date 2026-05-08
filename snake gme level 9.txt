@@ -1,0 +1,146 @@
+SET 9(Selenium)
+
+Aim
+To write a Selenium script to open Google using Internet Explorer Driver.
+To write a program to launch browser based on user input (Chrome/IE).
+
+Software Requirements
+Java JDK
+Maven
+VS Code
+Selenium WebDriver
+Chrome Browser
+Internet Explorer Driver
+Step 1: Verify Java Installation
+
+Open Command Prompt and type:
+
+java -version
+Output
+java version "26.0.1"
+Java(TM) SE Runtime Environment
+Java HotSpot(TM) 64-Bit Server VM
+Step 2: Verify Maven Installation
+
+Type:
+
+mvn -version
+Output
+Apache Maven 3.9.9
+Maven home: C:\Maven\apache-maven-3.9.9
+Java version: 26.0.1
+OS name: windows 11
+Step 3: Create IE Driver Folder
+
+Type:
+
+mkdir C:\IEDriver
+
+Step 4: Download IE Driver
+
+Type:
+
+powershell -Command "Invoke-WebRequest -Uri 'https://selenium-release.storage.googleapis.com/3.150/IEDriverServer_x64_3.150.1.zip' -OutFile 'C:\IEDriver\IEDriver.zip'"
+
+Step 5: Extract IE Driver
+
+Type:
+
+powershell -Command "Expand-Archive -Path 'C:\IEDriver\IEDriver.zip' -DestinationPath 'C:\IEDriver' -Force"
+
+Step 6: Verify IE Driver
+
+Type:
+
+dir C:\IEDriver
+Output
+IEDriver.zip
+IEDriverServer.exe
+Step 7: Open Selenium Project Folder
+
+Type:
+
+pushd "\\wsl.localhost\Ubuntu\home\achal\SeleniumProject\demo"
+Step 8: Open VS Code
+
+Type:
+
+code .
+Step 9: Java Program
+
+Open:
+
+src/main/java/com/selenium/App.java
+
+Replace with:
+
+package com.selenium;
+
+import java.util.Scanner;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+public class App {
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter browser (chrome/ie):");
+        String browser = sc.nextLine();
+
+        WebDriver driver;
+
+        if(browser.equalsIgnoreCase("ie")) {
+
+            System.setProperty(
+                "webdriver.ie.driver",
+                "C:\\IEDriver\\IEDriverServer.exe"
+            );
+
+            driver = new InternetExplorerDriver();
+
+        } else {
+
+            driver = new ChromeDriver();
+        }
+
+        driver.get("https://www.google.com");
+
+        System.out.println("Page Title: " + driver.getTitle());
+
+        Thread.sleep(10000);
+
+        driver.quit();
+
+        sc.close();
+    }
+}
+
+Step 10: Run the Program
+
+Type:
+
+mvn exec:java -Dexec.mainClass="com.selenium.App"
+
+Step 11: Enter Browser Name
+Example Input
+chrome
+Output
+Browser Output
+Chrome browser opens
+Google homepage opens
+Browser stays for few seconds
+Browser closes automatically
+Command Prompt Output
+Enter browser (chrome/ie):
+chrome
+
+Page Title: Google
+
+BUILD SUCCESS
+Result
+
+Thus, the Selenium program to open Google using Internet Explorer Driver and to launch browser based on user input (Chrome/IE) was executed successfully.

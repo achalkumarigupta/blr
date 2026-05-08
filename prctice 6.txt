@@ -1,0 +1,147 @@
+SET 6 (Ansible)
+TITLE: Ansible Shell Commands Execution
+
+AIM
+To write an Ansible playbook to execute a shell command on remote machines.
+To execute commands using pipe (|) and redirection (>) using Ansible.
+SOFTWARE REQUIREMENTS
+Ubuntu Operating System
+Ansible
+
+
+THEORY
+Ansible is an open-source automation tool used for:
+Configuration management
+Task automation
+Application deployment
+It uses YAML-based playbooks to automate tasks on remote systems.
+A playbook is a YAML file containing automation tasks executed by Ansible.
+The shell module is used to execute Linux shell commands on remote machines.
+Example:
+shell: date
+
+PROCEDURE
+
+STEP 1: Open Terminal
+Press:
+Ctrl + Alt + T
+
+STEP 2: Verify Ansible Installation
+Type:
+ansible --version
+If version details appear, Ansible is already installed successfully.
+
+STEP 3: Create Working Directory
+Create a new folder:
+
+mkdir my_ansible_set6
+
+Move inside the folder:
+
+cd my_ansible_set6
+
+STEP 4: Create Inventory File
+Inventory file stores host machine details.
+Create inventory file:
+
+nano hosts
+
+Add the following content:
+
+[local]
+localhost ansible_connection=local
+
+Save the file:
+
+
+Press Ctrl + O
+Press Enter
+Press Ctrl + X
+
+PROGRAM 1
+Execute Shell Command on Remote Machine
+
+STEP 5: Create Playbook File
+Type:
+nano command.yml
+Add the following code:
+---
+- name: Execute shell command
+  hosts: local
+
+  tasks:
+
+    - name: Run date command
+      shell: date
+      register: output
+
+    - name: Display output
+      debug:
+        var: output.stdout
+
+Save the file:
+
+Ctrl + O
+Enter
+Ctrl + X
+
+STEP 6: Execute the Playbook
+Run the playbook:
+ansible-playbook -i hosts command.yml
+
+EXPECTED OUTPUT
+TASK [Run date command]changed: [localhost]TASK [Display output]ok: [localhost] => {    "output.stdout": "Thu May 7 ..."}
+
+==================================================================================================================
+
+
+PROGRAM 2
+Execute Pipe and Redirection Commands Using Ansible
+
+STEP 7: Create Second Playbook
+Type:
+nano pipe_redirect.yml
+Add the following code:
+
+---
+- name: Pipe and Redirection Example
+  hosts: local
+
+  tasks:
+
+    - name: Execute command using pipe and redirection
+      shell: ls | sort > output.txt
+
+
+Save the file:
+
+
+Ctrl + O
+Enter
+Ctrl + X
+
+
+STEP 8: Execute Second Playbook
+Run:
+ansible-playbook -i hosts pipe_redirect.yml
+
+STEP 9: Verify Output File
+Type:
+cat output.txt
+The file names will appear in sorted order.
+
+PLAYBOOK EXPLANATION
+command.yml
+LineDescriptionhosts: localExecutes tasks on localhostshell: dateRuns Linux date commandregister: outputStores command outputdebugDisplays output
+
+pipe_redirect.yml
+LineDescriptionlsLists files| sortSorts file names> output.txtRedirects output to file
+
+RESULT
+
+
+Successfully executed shell commands on remote machines using Ansible.
+Successfully executed commands using pipe (|) and redirection (>) using Ansible.
+DIRECTORY STRUCTURE
+
+my_ansible_set6/│── hosts│── command.yml│── pipe_redirect.yml│── output.txt

@@ -1,0 +1,167 @@
+SET 4 (Git)
+
+Aim
+To create a branch, modify the same file differently in both branches, merge the branch into master, and resolve the merge conflict manually.
+
+Requirements
+Git installed on system
+Git Bash
+Windows File Explorer
+Text Editor / Notepad
+
+
+Theory
+A branch in Git allows developers to work independently on different versions of a project.
+A merge conflict occurs when the same file is modified differently in two branches and Git cannot automatically decide which change to keep.
+Conflict resolution is done manually by editing the file and committing the corrected version.
+
+Procedure
+
+Part A: Create Repository and Initial Commit
+
+Step 1: Create Project Folder
+Open File Explorer.
+Create a new folder named GitProject.
+Open the folder.
+Right-click inside the folder and select Open Git Bash Here.
+
+Explanation:
+This opens Git Bash in the selected project folder.
+
+Step 2: Initialize Git Repository
+Command:
+git init
+Explanation:
+Initializes an empty Git repository.
+Expected Output:
+Initialized empty Git repository
+
+Step 3: Create File
+Create a text file named file.txt.
+Open the file and write some content.
+
+Example:
+Hello World
+Save and close the file.
+
+Step 4: Add and Commit File
+Add File
+Command:
+git add file.txt
+Explanation:
+Adds the file to staging area.
+
+Commit File
+Command:
+git commit -m "Initial commit"
+Explanation:
+Creates the first commit in repository.
+
+=============================================================================
+
+Part B: Create Branch and Modify File
+
+Step 1: Create New Branch
+Command:
+git branch newbranch
+Explanation:
+Creates a new branch named newbranch.
+
+Step 2: Switch to New Branch
+Command:
+git checkout newbranch
+Explanation:
+Switches to the new branch.
+Expected Output:
+Switched to branch 'newbranch'
+
+Step 3: Modify File in New Branch
+Open file.txt.
+Change the content.
+
+Example:
+Hello from newbranch
+
+Save the file.
+
+
+Step 4: Add and Commit Changes in New Branch
+Add File
+Command:
+git add file.txt
+
+Commit Changes
+Command:
+git commit -m "Modified in newbranch"
+Explanation:
+Saves changes made in the new branch.
+
+======================================================================
+
+Part C: Modify Same File in Master Branch
+
+Step 1: Switch Back to Master Branch
+Command:
+git checkout master
+Explanation:
+Switches back to master branch.
+
+Step 2: Modify File in Master Branch
+Open file.txt.
+Change the content differently.
+Example:
+Hello from main branch update
+Save the file.
+
+Step 3: Add and Commit Changes in Master Branch
+Add File
+Command:
+git add file.txt
+
+Commit Changes
+Command:
+git commit -m "Modified in master"
+Explanation:
+Commits changes made in master branch.
+
+===================================================================
+
+Part D: Merge Branch and Resolve Conflict
+
+Step 1: Merge New Branch into Master
+Command:
+git merge newbranch
+Explanation:
+Attempts to merge newbranch into master branch.
+Expected Output:
+CONFLICT (content): Merge conflict in file.txtAutomatic merge failed
+
+Step 2: Resolve Conflict Manually
+Open file.txt.
+Remove conflict markers:
+<<<<<<< HEAD=======>>>>>>> newbranch
+Edit the file and keep the required final content.
+Example:
+Hello from main branch and newbranch
+
+Save the file.
+
+Step 3: Add Resolved File
+Command:
+git add file.txt
+Explanation:
+Marks the conflict as resolved.
+
+Step 4: Commit Merge Resolution
+Command:
+git commit -m "Resolved merge conflict"
+Explanation:
+Creates final commit after resolving merge conflict.
+
+Result
+A new branch was created successfully.
+The same file was modified differently in both branches.
+The branches were merged, conflict occurred, and the conflict was resolved manually.
+
+Conclusion
+Thus, Git branching, merging, and manual merge conflict resolution were performed successfully.

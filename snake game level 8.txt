@@ -1,0 +1,117 @@
+SET 8(Selenium)
+Aim
+To automate Google Chrome browser using Selenium WebDriver and:
+
+
+Open Google website
+Verify page title
+Verify redirection from google.com to google.co.in
+
+
+Software Requirements
+Java JDK
+Maven
+Google Chrome Browser
+ChromeDriver
+VS Code
+Selenium WebDriver
+
+
+Step 1 — Check Java Installation
+Command
+java -version
+Output
+java version "26.0.1"
+Explanation
+This command checks whether Java is installed successfully.
+
+Step 2 — Check Maven Installation
+Command
+mvn -version
+Output
+Apache Maven 3.9.9
+Explanation
+This command checks whether Maven is installed properly.
+
+Step 3 — Open Project Folder
+Command
+
+pushd "\\wsl.localhost\Ubuntu\home\achal\SeleniumProject\demo"
+
+Output
+Z:\home\achal\SeleniumProject\demo
+Explanation
+This command opens the Selenium project directory.
+
+Step 4 — Open VS Code
+Command
+code .
+Explanation
+This command opens the project in Visual Studio Code.
+
+Step 5 — Create Selenium Program
+Open file:
+src/main/java/com/selenium/App.java
+Program
+
+package com.selenium;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class App {
+
+    public static void main(String[] args) throws Exception {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://www.google.com");
+
+        driver.manage().window().maximize();
+
+        System.out.println("Page Title: " + driver.getTitle());
+
+        Thread.sleep(10000);
+
+        driver.close();
+    }
+}
+
+Step 6 — Run Selenium Program
+Command
+mvn exec:java -Dexec.mainClass="com.selenium.App"
+Explanation
+This command compiles and runs the Selenium Java program.
+
+
+
+Expected Browser Output
+Chrome browser opens automatically
+Google website loads automatically
+Browser closes automatically after execution
+
+
+Expected Command Prompt Output
+Page Title: GoogleCurrent URL: https://www.google.co.in/BUILD SUCCESS
+
+Verification
+Page Title Verification
+Program checks title using:
+driver.getTitle()
+Expected title:
+Google
+
+Redirection Verification
+Program opens:
+https://google.com
+Automatically redirected to:
+https://www.google.co.in/
+Thus redirection is verified successfully.
+
+Result
+Thus, Selenium WebDriver successfully:
+Opened Google Chrome browser
+Opened Google website
+Verified page title
+Verified redirection from google.com to google.co.in successfully.
+

@@ -1,0 +1,145 @@
+SET 2 (Git)
+
+Aim
+To create a local Git repository, add two files, demonstrate staging and committing, create a GitHub repository, connect it with the local repository, and push commits to GitHub.
+
+Requirements
+Git installed on system
+Git Bash
+GitHub account
+Internet connection
+Windows File Explorer
+Text Editor / Notepad
+
+
+Theory
+Git is a version control system used to manage and track changes in files.
+GitHub is an online platform used to store Git repositories remotely.
+The staging area is a temporary area where files are prepared before saving permanently.
+Committing means saving the staged changes into the repository history.
+
+Procedure
+
+Part A: Create Local Repository and Demonstrate Staging vs Commit
+
+Step 1: Create Project Folder
+Open File Explorer.
+Create a new folder named GitProject.
+Open the folder.
+Right-click inside the folder and select Open Git Bash Here.
+
+Explanation:
+This opens Git Bash inside the selected project folder.
+
+Step 2: Initialize Git Repository
+Command:
+git init
+
+Explanation:
+Initializes an empty Git repository in the project folder.
+Expected Output:
+Initialized empty Git repository
+
+Step 3: Create Two Text Files
+Inside the project folder, create two text files:
+file1.txt     =touch file1.txt
+
+file2.txt
+
+Open both files and write some content.
+
+Example:
+file1.txt
+This is file 1.
+file2.txt
+This is file 2.
+
+Save both files.
+
+Step 4: Add First File to Staging Area
+Command:
+git add file1.txt
+Explanation:
+Adds file1.txt to the staging area.
+
+Step 5: Check Git Status
+Command:
+git status
+Explanation:
+Displays the current status of files.
+
+Observation:
+file1.txt will appear in staged area.
+file2.txt will remain untracked.
+
+This demonstrates the staging concept.
+
+Step 6: Commit First File
+Command:
+git commit -m "Added file1"
+Explanation:
+Commits the staged file permanently into repository history.
+
+Step 7: Add Second File
+Command:
+git add file2.txt
+Explanation:
+Adds the second file to staging area.
+
+Step 8: Commit Second File
+Command:
+git commit -m "Added file2"
+Explanation:
+Commits the second file into the repository.
+
+Staging vs Committing
+Staging Committing Temporary area Permanent save Done using git add Done using git commit Prepares files for commit Saves changes in repository history
+
+Part B: Create GitHub Repository and Push Commits
+
+Step 1: Create Repository on GitHub
+
+Open GitHub website in browser.
+GitHub Official Website
+Login to GitHub account.
+Click on New Repository.
+Enter repository name.
+Click Create Repository.
+
+
+Step 2: Copy Repository URL
+Copy the HTTPS repository link from GitHub.
+
+Example:
+https://github.com/username/repositoryname.git
+like this
+https://github.com/achalkumarigupta/practice.git
+
+
+Step 3: Connect Local Repository with GitHub
+Command:
+git remote add origin https://github.com/username/repositoryname.git
+Explanation:
+Connects the local repository with remote GitHub repository.
+
+Step 4: Rename Branch to Main
+Command:
+git branch -M main
+Explanation:
+Renames the current branch to main.
+
+Step 5: Push Files to GitHub
+Command:
+git push -u origin main
+Explanation:
+Uploads all commits from local repository to GitHub repository.
+Expected Output:
+Branch 'main' set up to track remote branch 'main'
+
+Result
+A local Git repository was created successfully.
+Two files were added and committed separately.
+The local repository was connected to GitHub and all commits were pushed successfully.
+
+Conclusion
+Thus, staging, committing, connecting local repository to GitHub, and pushing commits were performed successfully using Git commands.

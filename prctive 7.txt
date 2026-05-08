@@ -1,0 +1,119 @@
+SET – 7(ANSIBLE)
+
+
+Aim
+To create and execute an Ansible playbook to create a file on target machines.
+To write an Ansible playbook using loop to create multiple directories.
+
+Requirements
+Ubuntu/Linux System
+Ansible Installed
+Terminal Access
+
+Theory
+Ansible is an open-source automation tool used for:
+Configuration management
+Application deployment
+Task automation
+It works using playbooks written in YAML format.
+A playbook is a YAML file containing automation tasks executed by Ansible.
+
+Example tasks:
+Create files
+Create directories
+Install packages
+Start services
+
+
+Procedure
+Step 1: Open Terminal
+Press:
+Ctrl + Alt + T
+
+Step 2: Create Working Directory
+mkdir automation_set7
+Move into the directory:
+cd automation_set7
+
+Step 3: Check Ansible Installation
+ansible --version
+If Ansible is not installed:
+sudo apt updatesudo apt install ansible -y
+
+Step 4: Create Inventory File
+Create inventory file:
+nano hosts
+Add the following content:
+[local]
+localhost ansible_connection=local
+Save the file:
+
+Ctrl + O
+Enter
+Ctrl + X
+
+
+TASK 1
+Create and Execute a Playbook to Create a File
+
+Step 5: Create Playbook File
+nano create_file.yml
+Add the following content:
+---
+- name: Create a file on target machine
+  hosts: local
+  tasks:
+
+    - name: Create sample file
+      file:
+        path: /tmp/demo_file.txt
+        state: touch
+Save the file.
+
+Step 6: Execute the Playbook
+ansible-playbook -i hosts create_file.yml
+
+Step 7: Verify File Creation
+ls /tmp
+Output:
+demo_file.txt
+
+TASK 2
+Create Multiple Directories Using Loop
+
+Step 8: Create Another Playbook
+nano create_dirs.yml
+Add the following content:
+---
+- name: Create multiple directories using loop
+  hosts: local
+  tasks:
+
+    - name: Create directories
+      file:
+        path: "/tmp/{{ item }}"
+        state: directory
+      loop:
+        - dir1
+        - dir2
+        - dir3Save the file.
+
+Step 9: Execute the Playbook
+ansible-playbook -i hosts create_dirs.yml
+
+Step 10: Verify Directory Creation
+ls /tmp
+Output:
+dir1dir2dir3
+
+Explanation of Commands
+CommandDescriptionstate: touchCreates a filestate: directoryCreates a directoryloop:Repeats the same task multiple times{{ item }}Represents current loop value
+
+
+Result
+Successfully created a file using an Ansible playbook.
+Successfully created multiple directories using loop in Ansible.
+
+
+Conclusion
+Thus, the Ansible playbook was successfully executed to create a file and multiple directories using loop.

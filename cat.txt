@@ -1,0 +1,153 @@
+SET 3 (Git)
+
+Aim
+To create a Git repository with two files, commit them separately, create a new branch, split file2.txt into file2a.txt, and commit the changes.
+
+Requirements
+Git installed on system
+Git Bash
+Windows File Explorer
+Text Editor / Notepad
+
+Theory
+Git is a distributed version control system used to manage source code and track file changes.
+A branch in Git is used to create an independent line of development without affecting the main project files.
+A commit stores changes permanently in the repository history.
+
+Procedure
+Part A: Create Repository with Two Files and Separate Commits
+
+Step 1: Create Project Folder
+Open File Explorer.
+Create a new folder named GitProject.
+Open the folder.
+Right-click inside the folder and select Open Git Bash Here.
+
+Explanation:
+This opens Git Bash in the selected project folder.
+
+Step 2: Initialize Git Repository
+
+Command:
+
+git init
+
+Explanation:
+Initializes an empty Git repository.
+
+Expected Output:
+
+Initialized empty Git repository
+Step 3: Create First File
+Inside the project folder, create a text file named file1.txt.
+Open the file and add some content.
+
+Example:
+
+This is file 1.
+Save and close the file.
+Step 4: Add and Commit First File
+Add File
+
+Command:
+
+git add file1.txt
+
+Explanation:
+Adds file1.txt to staging area.
+
+Commit File
+
+Command:
+
+git commit -m "Added file1"
+
+Explanation:
+Commits the first file into the repository.
+
+Step 5: Create Second File
+Create another text file named file2.txt.
+Open the file and add content.
+
+Example:
+
+This is file 2.
+Save and close the file.
+Step 6: Add and Commit Second File
+Add File
+
+Command:
+
+git add file2.txt
+
+Explanation:
+Adds file2.txt to staging area.
+
+Commit File
+
+Command:
+
+git commit -m "Added file2"
+
+Explanation:
+Commits the second file separately.
+
+Part B: Create New Branch and Split file2.txt into file2a.txt
+Step 1: Create New Branch
+
+Command:
+
+git branch newbranch
+
+Explanation:
+Creates a new branch named newbranch.
+
+Step 2: Switch to New Branch
+
+Command:
+
+git checkout newbranch
+
+Explanation:
+Switches from current branch to newbranch.
+
+Expected Output:
+
+Switched to branch 'newbranch'
+
+Step 3: Split file2.txt into file2a.txt
+Create a new file named file2a.txt.
+Copy some content from file2.txt into file2a.txt.
+Save the new file.
+Remove or edit content from file2.txt if required.
+
+Example content inside file2a.txt:
+
+This content is moved from file2.
+Step 4: Add Modified Files
+
+Command:
+
+git add file2.txt file2a.txt
+
+Explanation:
+Adds both modified and newly created files to staging area.
+
+Step 5: Commit Changes
+
+Command:
+
+git commit -m "Split file2 into file2a"
+
+Explanation:
+Commits the split changes in the new branch.
+
+Result
+
+A Git repository with two files was created successfully.
+Both files were committed separately.
+A new branch was created, file2.txt was split into file2a.txt, and the changes were committed successfully.
+
+Conclusion
+
+Thus, Git branching, separate commits, file modification, and committing changes in a new branch were performed successfully.

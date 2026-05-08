@@ -1,0 +1,268 @@
+SET 11(Jenkins) 
+
+Aim: To install and use Jenkins for creating build jobs using:
+Apache Ant
+Maven
+Batch/Shell Script
+
+Requirements:
+The following software/tools were already installed before performing the experiment:
+Java (JDK)
+Jenkins
+Apache Ant
+Maven
+WSL/Linux Terminal
+SSH
+Browser (for Jenkins Dashboard)
+
+
+Question 1
+Create a Jenkins Job using Apache Ant Build Tool
+
+Step 1: Start Jenkins Service
+Open terminal and run:(wsl)
+
+sudo systemctl start jenkins
+
+It may ask for the system password.
+
+Explanation
+This command starts the Jenkins service in Linux. Jenkins must be running before opening the dashboard in the browser.
+
+Step 2: Open Jenkins Dashboard
+
+Open browser and type:
+
+http://localhost:8080
+Expected Result
+
+Jenkins dashboard should open successfully.
+
+Explanation
+Jenkins runs locally on port 8080. The dashboard is used to create and manage jobs.
+
+Step 3: Create Project Directory
+
+mkdir -p ~/jenkins_lab/ant_project
+cd ~/jenkins_lab/ant_project
+
+Explanation
+
+mkdir -p creates the project folder.
+cd changes the current directory to the project folder.
+
+Step 4: Create Java File
+nano Hello.java
+
+Add the following code:
+
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello from Ant Build!");
+    }
+}
+
+ctrl o enter ctrl x
+
+Explanation
+This Java program prints a message on the screen. It will be compiled and executed using Apache Ant.
+
+Step 5: Create build.xml File
+nano build.xml
+
+Add the following code:
+
+<project name="HelloProject" default="compile">
+
+    <target name="compile">
+        <mkdir dir="build"/>
+        <javac srcdir="." destdir="build"/>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="Hello" classpath="build" fork="true"/>
+    </target>
+
+</project>
+
+Explanation
+build.xml is the configuration file used by Apache Ant.
+compile target compiles the Java file.
+run target executes the compiled class.
+
+Step 6: Execute Ant Build
+
+ant run
+
+Expected Output
+Hello from Ant Build!
+BUILD SUCCESSFUL
+
+Explanation
+The Ant tool compiles the Java program and runs it successfully.
+=====================================================================================
+
+Step 7: Create Jenkins Job for Ant Project
+Procedure
+Open Jenkins Dashboard.
+Click New Item.
+Enter job name: AntJob
+Select Freestyle Project.
+Click OK.
+In Build Section, click Add Build Step.
+Select Invoke Ant.
+In Targets field, enter:
+run
+Click Save.
+Click Build Now.
+Expected Result
+
+Build should complete successfully with console output displaying:
+
+Hello from Ant Build!
+=====================================================================================
+
+Question 2
+Create Jobs using Maven and Batch Script
+
+Part A – Maven Job
+
+Step 1: Create Maven Project Directory
+
+mkdir -p ~/jenkins_lab/maven_project/src/main/java
+cd ~/jenkins_lab/maven_project
+
+Explanation
+This creates the Maven project structure.
+
+Step 2: Create pom.xml File
+nano pom.xml
+
+Add the following code:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.demo</groupId>
+    <artifactId>HelloMaven</artifactId>
+    <version>1.0</version>
+
+</project>
+
+Explanation
+pom.xml is the Project Object Model file used by Maven.
+It stores project configuration and dependency details.
+
+Step 3: Create Java File
+nano src/main/java/Hello.java
+
+Add the following code:
+
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello from Maven!");
+    }
+}
+
+
+Step 4: Compile Maven Project
+
+mvn compile
+
+Expected Output
+BUILD SUCCESS
+Explanation
+
+Maven compiles the Java source code successfully.
+
+=====================================================================================
+
+Step 5: Create Jenkins Maven Job
+Procedure
+Open Jenkins Dashboard.
+Click New Item.
+Enter job name: MavenJob
+Select Freestyle Project.
+Click OK.
+In Build section, click Add Build Step.
+Select Invoke top-level Maven targets.
+In Goals field, enter:
+compile
+Save the job.
+Click Build Now.
+Expected Result
+
+The Maven build should complete successfully.
+
+=====================================================================================
+
+
+Part B – Batch/Shell Script Job
+
+Step 1: Create Script Project Directory
+mkdir -p ~/jenkins_lab/script_project
+cd ~/jenkins_lab/script_project
+
+Step 2: Create Shell Script File
+
+nano test.sh
+
+Add the following code:
+
+echo "This is Batch Script Job"
+date
+pwd
+
+Explanation
+echo displays text.
+date shows current system date and time.
+pwd prints current working directory.
+
+Step 3: Give Execute Permission
+
+chmod +x test.sh
+
+Explanation
+
+This command gives execution permission to the shell script.
+
+Step 4: Run the Script
+./test.sh
+
+Expected Output
+This is Batch Script Job
+
+(Current date and working directory will also be displayed.)
+======================================================================================
+Step 5: Create Jenkins Script Job
+Procedure
+Open Jenkins Dashboard.
+Click New Item.
+Enter job name: ScriptJob
+Select Freestyle Project.
+Click OK.
+In Build section, click Add Build Step.
+Select Execute Shell.
+Enter:
+./test.sh
+Save the job.
+Click Build Now.
+
+=====================================================================================
+
+Expected Result
+The shell script executes successfully inside Jenkins.
+
+Result
+
+Thus, Jenkins jobs were successfully created and executed using:
+
+Apache Ant Build Tool
+Maven Build Tool
+Batch/Shell Script
+
+All builds completed successfully and produced the expected outputs.
