@@ -266,3 +266,101 @@ Maven Build Tool
 Batch/Shell Script
 
 All builds completed successfully and produced the expected outputs.
+
+
+First Create AntJob
+Go to Jenkins Dashboard
+
+Step 1 — New Item
+Click:
+New Item
+
+Step 2 — Job Name
+Enter:
+AntJob
+Select:
+Freestyle Project
+Click:
+OK
+
+Step 3 — Restrict to Linux Node (Optional but Recommended)
+Tick:
+Restrict where this project can be run
+Label:
+linux
+
+Step 4 — Add Build Step
+Scroll to Build section.
+Click:
+Add Build Step
+Select:
+Invoke Ant
+
+Step 5 — Targets
+In Targets field enter:
+run
+
+IMPORTANT — Build File Location
+In Build File field enter:
+/home/achal/jenkins_lab/ant_project/build.xml
+
+Step 6 — Save
+Click Save.
+
+Step 7 — Build Now
+Click:
+Build Now
+
+Expected Output
+Console Output should show:
+Hello from Ant Build!BUILD SUCCESSFULFinished: SUCCESS
+
+Then Create MavenJob
+Same process.
+
+Step 1 — New Item
+Name:
+MavenJob
+Select:
+
+
+Freestyle Project
+
+
+OK
+
+
+
+Step 2 — Restrict to Linux Node
+Tick:
+Restrict where this project can be run
+Label:
+linux
+
+Step 3 — Add Build Step
+Build → Add Build Step →
+Invoke top-level Maven targets
+
+Step 4 — Root POM
+Enter:
+/home/achal/jenkins_lab/maven_project/pom.xml
+
+Step 5 — Goals
+Enter:
+compile
+
+Step 6 — Save and Build
+Click:
+
+
+Save
+
+
+Build Now
+
+
+
+Expected Output
+BUILD SUCCESSFinished: SUCCESS
+After these two jobs run successfully:
+✅ your SET 11 becomes FULLY completed practically also.
